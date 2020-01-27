@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-// See section 5 video 24 for explanations
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
@@ -11,8 +10,6 @@ const PostSchema = new Schema({
     type: String,
     required: true
   },
-
-  // name and avatar are here so we don't need the user object to display the user's posts if the user deletes their account
   name: {
     type: String
   },
@@ -20,7 +17,6 @@ const PostSchema = new Schema({
     type: String
   },
   likes: [
-    // include an array of user objects (by their ObjectId) so 1 user can't like a post multiple times
     {
       user: {
         type: Schema.Types.ObjectId,
@@ -35,7 +31,6 @@ const PostSchema = new Schema({
         ref: "users"
       },
       text: {
-        // comments have text in them
         type: String,
         required: true
       },

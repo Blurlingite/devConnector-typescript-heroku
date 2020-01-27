@@ -1,11 +1,9 @@
-// Section 10 Lecture 59 - Displaying Github Repos
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Spinner from "../layout/Spinner";
 import { connect } from "react-redux";
 import { getGithubRepos } from "../../actions/profile";
 
-// we pass in the username, the getGithubRepos action, the repos (which come from the state)
 const ProfileGithub = ({ username, getGithubRepos, repos }) => {
   useEffect(() => {
     getGithubRepos(username);
@@ -14,7 +12,7 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
   return (
     <div className="profile-github">
       <h2 className="text-primary my-1">Github Repos</h2>
-      {/* If there are no repos, show the spinner. Else, show the repos */}
+
       {repos === null ? (
         <Spinner />
       ) : (
@@ -23,7 +21,6 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
             <div>
               <h4>
                 <a
-                  // "repo" has a field called "html_url" which is the link to the repo on Github
                   href={repo.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -36,19 +33,14 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
             <div>
               <ul>
                 <li className="badge badge-primary">
-                  {/* "repo" has a field called "stargazers_count" to show the number of stars  */}
                   Stars: {repo.stargazers_count}
                 </li>
 
                 <li className="badge badge-dark">
-                  {/* "repo" has a field called "stargazers_count" to show the number of watchers  */}
                   Watchers: {repo.watchers_count}
                 </li>
 
-                <li className="badge badge-light">
-                  {/* "repo" has a field called "forks_count" to show the number of forks  */}
-                  Forks: {repo.forks_count}
-                </li>
+                <li className="badge badge-light">Forks: {repo.forks_count}</li>
               </ul>
             </div>
           </div>
@@ -65,10 +57,7 @@ ProfileGithub.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  repos: state.profile.repos // get the repos from the profile in the state and assign it to "repos"
+  repos: state.profile.repos
 });
 
-export default connect(
-  mapStateToProps,
-  { getGithubRepos }
-)(ProfileGithub);
+export default connect(mapStateToProps, { getGithubRepos })(ProfileGithub);

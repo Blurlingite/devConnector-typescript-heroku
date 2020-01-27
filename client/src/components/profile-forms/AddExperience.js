@@ -1,4 +1,3 @@
-// Section 9 Lecture 50
 import React, { Fragment, useState } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -12,7 +11,7 @@ const AddExperience = ({ addExperience, history }) => {
     location: "",
     from: "",
     to: "",
-    current: false, // see comments in profile model for why this is false by default
+    current: false,
     description: ""
   });
 
@@ -35,7 +34,6 @@ const AddExperience = ({ addExperience, history }) => {
         class="form"
         onSubmit={e => {
           e.preventDefault();
-          // when we submit, the history object will let us redirect to the endpoint we specified
           addExperience(formData, history);
         }}
       >
@@ -79,13 +77,6 @@ const AddExperience = ({ addExperience, history }) => {
         </div>
         <div class="form-group">
           <p>
-            {/*
-             We need to toggleDisable and pre-fill this field with setFormData.
-
-             checked={current} takes in "current" which by default is false, so the box will not be checked. If you click the box, "current" will be true and the box will be checked
-            
-            
-            */}
             <input
               type="checkbox"
               name="current"
@@ -93,7 +84,6 @@ const AddExperience = ({ addExperience, history }) => {
               value={current}
               onChange={e => {
                 setFormData({ ...formData, current: !current });
-                // this will make it so that when the user checks the "current" box, the "to" field cannot accept any text and will toggle when you check the box again
                 toggleDisabled(!toDateDisabled);
               }}
             />{" "}
@@ -107,7 +97,6 @@ const AddExperience = ({ addExperience, history }) => {
             name="to"
             value={to}
             onChange={e => onChange(e)}
-            // If toDateDisabled is true, disable this field by setting the string to 'disabled', else, do nothing (by setting it to an empty string)
             disabled={toDateDisabled ? "disabled" : ""}
           />
         </div>
@@ -134,7 +123,4 @@ AddExperience.propTypes = {
   addExperience: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  { addExperience }
-)(withRouter(AddExperience));
+export default connect(null, { addExperience })(withRouter(AddExperience));

@@ -1,4 +1,3 @@
-// Section 9 Lecture 49
 import React from "react";
 import { Link } from "react-router-dom";
 

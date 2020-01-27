@@ -1,11 +1,7 @@
-// Section 9 Lecture 49  ----- See CreateProfile.js for comments
 import React, { Fragment, useState, useEffect } from "react";
-// "withRouter" to use the "history" object (also used in profile.js in the "actions folder"). It lets us to redirect from the action
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// we bring in "createProfile" b/c it can also be used to edit a profile
-// we also bring in "getCurrentProfile" so we can pre-fill the fields
 import { createProfile, getCurrentProfile } from "../../actions/profile";
 
 const EditProfile = ({
@@ -31,34 +27,26 @@ const EditProfile = ({
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
-  useEffect(
-    () => {
-      getCurrentProfile();
+  useEffect(() => {
+    getCurrentProfile();
 
-      // use setFormData from above to fill in fields on form, but you must check for each field first
-      setFormData({
-        // If the page is loading ("loading") or there is nothing in the company field (|| !profile.company) then make it empty. Otherwise, fill in the field with the company that came in when you called getCurrentProfile() above  with "profile.company"
-        company: loading || !profile.company ? "" : profile.company,
-        website: loading || !profile.website ? "" : profile.website,
-        location: loading || !profile.location ? "" : profile.location,
-        status: loading || !profile.status ? "" : profile.status,
-        // skills is an array so we need the .join(",") to get all the skills in the array and join them into 1 string to be displayed on the webpage
-        skills: loading || !profile.skills ? "" : profile.skills.join(","),
-        githubusername:
-          loading || !profile.githubusername ? "" : profile.githubusername,
-        bio: loading || !profile.bio ? "" : profile.bio,
+    setFormData({
+      company: loading || !profile.company ? "" : profile.company,
+      website: loading || !profile.website ? "" : profile.website,
+      location: loading || !profile.location ? "" : profile.location,
+      status: loading || !profile.status ? "" : profile.status,
+      skills: loading || !profile.skills ? "" : profile.skills.join(","),
+      githubusername:
+        loading || !profile.githubusername ? "" : profile.githubusername,
+      bio: loading || !profile.bio ? "" : profile.bio,
 
-        // for the social media stuff, we also need to check if the social object (the object that all the social media fields are in) exists. You cannot just say profile.twitter for example
-        twitter: loading || !profile.social ? "" : profile.social.twitter,
-        facebook: loading || !profile.social ? "" : profile.social.facebook,
-        linkedin: loading || !profile.social ? "" : profile.social.linkedin,
-        youtube: loading || !profile.social ? "" : profile.social.youtube,
-        instagram: loading || !profile.social ? "" : profile.social.instagram
-      });
-    },
-    // add getCurrentProfile as a dependency so annoying warning doesn't show
-    [loading, getCurrentProfile] // with useEffect() we need at least an empty sqaure brackets or it'll keep running. However, we put loading in the square brackets so that this useEffect() call depends on the loading object(boolean). That means this useEffect() will only run if loading is true, meaning if the profile is still loading. (If we put !loading then, it would only run if loading is false)
-  );
+      twitter: loading || !profile.social ? "" : profile.social.twitter,
+      facebook: loading || !profile.social ? "" : profile.social.facebook,
+      linkedin: loading || !profile.social ? "" : profile.social.linkedin,
+      youtube: loading || !profile.social ? "" : profile.social.youtube,
+      instagram: loading || !profile.social ? "" : profile.social.instagram
+    });
+  }, [loading, getCurrentProfile]);
   const {
     company,
     website,
@@ -74,13 +62,11 @@ const EditProfile = ({
     instagram
   } = formData;
 
-  // see comments from another component
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
     e.preventDefault();
-    // the "true" parameter makes it so that when we are editing a profile, it will redirect back to the dashboard page after we submit. How does it do that? Maybe it has something to do with the 2nd "history" param
     createProfile(formData, history, true);
   };
 
@@ -269,8 +255,6 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-// "getCurrentProfile" was also imported above
-export default connect(
-  mapStateToProps,
-  { createProfile, getCurrentProfile }
-)(withRouter(EditProfile));
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  withRouter(EditProfile)
+);

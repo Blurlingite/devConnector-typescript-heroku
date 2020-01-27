@@ -1,4 +1,3 @@
-// Section 10 Lecture 58 - Profile Experience & Education Display
 import React from "react";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
