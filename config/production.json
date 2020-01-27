@@ -1,0 +1,9 @@
+{
+  "mongoURI": "mongodb+srv://blurlingite:vdj03@devconnector-pgj7g.mongodb.net/test?retryWrites=true",
+
+  "jwtSecret": "mysecrettoken",
+
+  "githubClientId": "9d85f210495a3ff951a8",
+
+  "githubSecret": "67cdce8869167b87980699d2f7eb7a36e6286b06"
+}
