@@ -10,8 +10,15 @@ import {
   ADD_COMMENT,
   REMOVE_COMMENT
 } from "./types";
+import { AnyAction } from "redux";
+import { ThunkAction } from "redux-thunk";
 
-export const getPosts = () => async dispatch => {
+export const getPosts = (): ThunkAction<
+  Promise<void>,
+  {},
+  {},
+  AnyAction
+> => async dispatch => {
   try {
     const res = await axios.get("/api/posts");
 
@@ -27,7 +34,9 @@ export const getPosts = () => async dispatch => {
   }
 };
 
-export const addLike = id => async dispatch => {
+export const addLike = (
+  id: string
+): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
   try {
     const res = await axios.put(`/api/posts/like/${id}`);
 
@@ -43,7 +52,9 @@ export const addLike = id => async dispatch => {
   }
 };
 
-export const removeLike = id => async dispatch => {
+export const removeLike = (
+  id: string
+): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
   try {
     const res = await axios.put(`/api/posts/unlike/${id}`);
 
@@ -59,7 +70,9 @@ export const removeLike = id => async dispatch => {
   }
 };
 
-export const deletePost = id => async dispatch => {
+export const deletePost = (
+  id: string
+): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
   try {
     await axios.delete(`/api/posts/${id}`);
 
@@ -77,7 +90,9 @@ export const deletePost = id => async dispatch => {
   }
 };
 
-export const addPost = formData => async dispatch => {
+export const addPost = (
+  formData: string
+): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -100,7 +115,9 @@ export const addPost = formData => async dispatch => {
   }
 };
 
-export const getPost = id => async dispatch => {
+export const getPost = (
+  id: string
+): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
   try {
     const res = await axios.get(`/api/posts/${id}`);
 
@@ -116,7 +133,10 @@ export const getPost = id => async dispatch => {
   }
 };
 
-export const addComment = (postId, formData) => async dispatch => {
+export const addComment = (
+  postId: string,
+  formData: string
+): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -143,7 +163,10 @@ export const addComment = (postId, formData) => async dispatch => {
   }
 };
 
-export const deleteComment = (postId, commentId) => async dispatch => {
+export const deleteComment = (
+  postId: string,
+  commentId: string
+): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
   try {
     const res = await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
 

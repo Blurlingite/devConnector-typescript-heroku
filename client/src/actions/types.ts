@@ -22,3 +22,60 @@ export const DELETE_POST = "DELETE_POST";
 export const ADD_POST = "ADD_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";
+
+export interface AddPostAction {
+  type: typeof ADD_POST;
+  // post: Post;
+  payload: any;
+}
+
+export interface GetPostAction {
+  type: typeof GET_POST;
+  // post: Post;
+  payload: any;
+}
+
+export interface GetPostsAction {
+  type: typeof GET_POSTS;
+  // posts: Post[];
+  payload: any;
+}
+
+export interface DeletePostAction {
+  type: typeof DELETE_POST;
+  // id: string;
+  payload: any;
+}
+
+export interface PostErrorAction {
+  type: typeof POST_ERROR;
+  // error: any;
+  payload: any;
+}
+
+export interface UpdateLikesAction {
+  type: typeof UPDATE_LIKES;
+  payload: any;
+}
+
+export interface AddCommentAction {
+  type: typeof ADD_COMMENT;
+  payload: any;
+}
+
+export interface RemoveCommentAction {
+  type: typeof REMOVE_COMMENT;
+  payload: any;
+}
+
+export type PostActionTypes =
+  | AddPostAction
+  | GetPostAction
+  | GetPostsAction
+  | DeletePostAction
+  | PostErrorAction
+  | UpdateLikesAction
+  | AddCommentAction
+  | RemoveCommentAction;
+
+export type AppActions = PostActionTypes;
