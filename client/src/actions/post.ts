@@ -1,15 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import {
-  GET_POSTS,
-  POST_ERROR,
-  UPDATE_LIKES,
-  DELETE_POST,
-  ADD_POST,
-  GET_POST,
-  ADD_COMMENT,
-  REMOVE_COMMENT
-} from "./types";
+import { ActionTypes } from "./types";
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 
@@ -23,13 +14,14 @@ export const getPosts = (): ThunkAction<
     const res = await axios.get("/api/posts");
 
     dispatch({
-      type: GET_POSTS,
-      payload: res.data
+      type: ActionTypes.GET_POSTS,
+      posts: res.data
     });
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: ActionTypes.POST_ERROR,
+      msg: err.response.statusText,
+      status: err.response.status
     });
   }
 };
@@ -41,13 +33,15 @@ export const addLike = (
     const res = await axios.put(`/api/posts/like/${id}`);
 
     dispatch({
-      type: UPDATE_LIKES,
-      payload: { id, likes: res.data }
+      type: ActionTypes.UPDATE_LIKES,
+      id: id,
+      likes: res.data
     });
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: ActionTypes.POST_ERROR,
+      msg: err.response.statusText,
+      status: err.response.status
     });
   }
 };
@@ -59,13 +53,15 @@ export const removeLike = (
     const res = await axios.put(`/api/posts/unlike/${id}`);
 
     dispatch({
-      type: UPDATE_LIKES,
-      payload: { id, likes: res.data }
+      type: ActionTypes.UPDATE_LIKES,
+      id: id,
+      likes: res.data
     });
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: ActionTypes.POST_ERROR,
+      msg: err.response.statusText,
+      status: err.response.status
     });
   }
 };
@@ -77,15 +73,16 @@ export const deletePost = (
     await axios.delete(`/api/posts/${id}`);
 
     dispatch({
-      type: DELETE_POST,
-      payload: id
+      type: ActionTypes.DELETE_POST,
+      id: id
     });
 
     dispatch(setAlert("Post Removed", "success"));
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: ActionTypes.POST_ERROR,
+      msg: err.response.statusText,
+      status: err.response.status
     });
   }
 };
@@ -102,15 +99,16 @@ export const addPost = (
     const res = await axios.post(`/api/posts`, formData, config);
 
     dispatch({
-      type: ADD_POST,
-      payload: res.data
+      type: ActionTypes.ADD_POST,
+      post: res.data
     });
 
     dispatch(setAlert("Post Created", "success"));
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: ActionTypes.POST_ERROR,
+      msg: err.response.statusText,
+      status: err.response.status
     });
   }
 };
@@ -122,13 +120,14 @@ export const getPost = (
     const res = await axios.get(`/api/posts/${id}`);
 
     dispatch({
-      type: GET_POST,
-      payload: res.data
+      type: ActionTypes.GET_POST,
+      post: res.data
     });
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: ActionTypes.POST_ERROR,
+      msg: err.response.statusText,
+      status: err.response.status
     });
   }
 };
@@ -150,15 +149,16 @@ export const addComment = (
     );
 
     dispatch({
-      type: ADD_COMMENT,
-      payload: res.data
+      type: ActionTypes.ADD_COMMENT,
+      comment: res.data
     });
 
     dispatch(setAlert("Comment Added", "success"));
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: ActionTypes.POST_ERROR,
+      msg: err.response.statusText,
+      status: err.response.status
     });
   }
 };
@@ -171,15 +171,16 @@ export const deleteComment = (
     const res = await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
 
     dispatch({
-      type: REMOVE_COMMENT,
-      payload: commentId
+      type: ActionTypes.REMOVE_COMMENT,
+      id: commentId
     });
 
     dispatch(setAlert("Comment Removed", "success"));
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: ActionTypes.POST_ERROR,
+      msg: err.response.statusText,
+      status: err.response.status
     });
   }
 };

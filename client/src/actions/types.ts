@@ -1,3 +1,5 @@
+import { Post } from "../types/Post";
+
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -14,68 +16,67 @@ export const CLEAR_PROFILE = "CLEAR_PROFILE";
 export const PROFILE_ERROR = "PROFILE_ERROR";
 export const ACCOUNT_DELETED = "ACCOUNT_DELETED";
 export const GET_REPOS = "GET_REPOS";
-export const GET_POSTS = "GET_POSTS";
-export const GET_POST = "GET_POST";
-export const POST_ERROR = "POST_ERROR";
-export const UPDATE_LIKES = "UPDATE_LIKES";
-export const DELETE_POST = "DELETE_POST";
-export const ADD_POST = "ADD_POST";
-export const ADD_COMMENT = "ADD_COMMENT";
-export const REMOVE_COMMENT = "REMOVE_COMMENT";
+
+export enum ActionTypes {
+  ADD_POST = "ADD_POST",
+  GET_POST = "GET_POST",
+  GET_POSTS = "GET_POSTS",
+  DELETE_POST = "DELETE_POST",
+  UPDATE_LIKES = "UPDATE_LIKES",
+  ADD_COMMENT = "ADD_COMMENT",
+  REMOVE_COMMENT = "REMOVE_COMMENT",
+  POST_ERROR = "POST_ERROR"
+}
 
 export interface AddPostAction {
-  type: typeof ADD_POST;
-  // post: Post;
-  payload: any;
+  type: ActionTypes.ADD_POST;
+  post: Post;
 }
 
 export interface GetPostAction {
-  type: typeof GET_POST;
-  // post: Post;
-  payload: any;
+  type: ActionTypes.GET_POST;
+  post: Post;
 }
 
 export interface GetPostsAction {
-  type: typeof GET_POSTS;
-  // posts: Post[];
-  payload: any;
+  type: ActionTypes.GET_POSTS;
+  posts: Post[];
 }
 
 export interface DeletePostAction {
-  type: typeof DELETE_POST;
-  // id: string;
-  payload: any;
-}
-
-export interface PostErrorAction {
-  type: typeof POST_ERROR;
-  // error: any;
-  payload: any;
+  type: ActionTypes.DELETE_POST;
+  id: string;
 }
 
 export interface UpdateLikesAction {
-  type: typeof UPDATE_LIKES;
-  payload: any;
+  type: ActionTypes.UPDATE_LIKES;
+  id: string;
+  likes: { id: string; user: string };
 }
 
 export interface AddCommentAction {
-  type: typeof ADD_COMMENT;
-  payload: any;
+  type: ActionTypes.ADD_COMMENT;
+  comment: Post["comments"];
 }
 
 export interface RemoveCommentAction {
-  type: typeof REMOVE_COMMENT;
-  payload: any;
+  type: ActionTypes.REMOVE_COMMENT;
+  id: string;
 }
 
+export interface PostErrorAction {
+  type: ActionTypes.POST_ERROR;
+  msg: string;
+  status: any;
+}
 export type PostActionTypes =
   | AddPostAction
   | GetPostAction
   | GetPostsAction
   | DeletePostAction
-  | PostErrorAction
   | UpdateLikesAction
   | AddCommentAction
-  | RemoveCommentAction;
+  | RemoveCommentAction
+  | PostErrorAction;
 
 export type AppActions = PostActionTypes;
