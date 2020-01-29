@@ -1,7 +1,7 @@
 import { Post } from "../types/Post";
 
-export const SET_ALERT = "SET_ALERT";
-export const REMOVE_ALERT = "REMOVE_ALERT";
+// export const SET_ALERT = "SET_ALERT";
+// export const REMOVE_ALERT = "REMOVE_ALERT";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const USER_LOADED = "USER_LOADED";
@@ -25,7 +25,9 @@ export enum ActionTypes {
   UPDATE_LIKES = "UPDATE_LIKES",
   ADD_COMMENT = "ADD_COMMENT",
   REMOVE_COMMENT = "REMOVE_COMMENT",
-  POST_ERROR = "POST_ERROR"
+  POST_ERROR = "POST_ERROR",
+  SET_ALERT = "SET_ALERT",
+  REMOVE_ALERT = "REMOVE_ALERT"
 }
 
 export interface AddPostAction {
@@ -69,6 +71,19 @@ export interface PostErrorAction {
   msg: string;
   status: any;
 }
+
+export interface SetAlertAction {
+  type: ActionTypes.SET_ALERT;
+  msg: string;
+  alertType: string;
+  id: string;
+}
+
+export interface RemoveAlertAction {
+  type: ActionTypes.REMOVE_ALERT;
+  id: string;
+}
+
 export type PostActionTypes =
   | AddPostAction
   | GetPostAction
@@ -79,4 +94,6 @@ export type PostActionTypes =
   | RemoveCommentAction
   | PostErrorAction;
 
-export type AppActions = PostActionTypes;
+export type AlertActionTypes = SetAlertAction | RemoveAlertAction;
+
+export type AppActions = PostActionTypes | AlertActionTypes;

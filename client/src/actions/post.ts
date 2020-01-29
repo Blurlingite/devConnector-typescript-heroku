@@ -1,69 +1,68 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import { ActionTypes } from "./types";
+import { ActionTypes, AppActions } from "./types";
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
+import { Dispatch } from "redux";
+import { AppState } from "../store";
 
-export const getPosts = (): ThunkAction<
-  Promise<void>,
-  {},
-  {},
-  AnyAction
-> => async dispatch => {
-  try {
-    const res = await axios.get("/api/posts");
+export const getPosts = () => {
+  return async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
+    try {
+      const res = await axios.get("/api/posts");
 
-    dispatch({
-      type: ActionTypes.GET_POSTS,
-      posts: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: ActionTypes.POST_ERROR,
-      msg: err.response.statusText,
-      status: err.response.status
-    });
-  }
+      dispatch({
+        type: ActionTypes.GET_POSTS,
+        posts: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: ActionTypes.POST_ERROR,
+        msg: err.response.statusText,
+        status: err.response.status
+      });
+    }
+  };
 };
 
-export const addLike = (
-  id: string
-): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
-  try {
-    const res = await axios.put(`/api/posts/like/${id}`);
+export const addLike = (id: string) => {
+  return async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
+    try {
+      const res = await axios.put(`/api/posts/like/${id}`);
 
-    dispatch({
-      type: ActionTypes.UPDATE_LIKES,
-      id: id,
-      likes: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: ActionTypes.POST_ERROR,
-      msg: err.response.statusText,
-      status: err.response.status
-    });
-  }
+      dispatch({
+        type: ActionTypes.UPDATE_LIKES,
+        id: id,
+        likes: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: ActionTypes.POST_ERROR,
+        msg: err.response.statusText,
+        status: err.response.status
+      });
+    }
+  };
 };
 
-export const removeLike = (
-  id: string
-): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
-  try {
-    const res = await axios.put(`/api/posts/unlike/${id}`);
+export const removeLike = (id: string) => {
+  return async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
+    try {
+      const res = await axios.put(`/api/posts/unlike/${id}`);
 
-    dispatch({
-      type: ActionTypes.UPDATE_LIKES,
-      id: id,
-      likes: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: ActionTypes.POST_ERROR,
-      msg: err.response.statusText,
-      status: err.response.status
-    });
-  }
+      dispatch({
+        type: ActionTypes.UPDATE_LIKES,
+        id: id,
+        likes: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: ActionTypes.POST_ERROR,
+        msg: err.response.statusText,
+        status: err.response.status
+      });
+    }
+  };
 };
 
 export const deletePost = (
@@ -113,23 +112,23 @@ export const addPost = (
   }
 };
 
-export const getPost = (
-  id: string
-): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
-  try {
-    const res = await axios.get(`/api/posts/${id}`);
+export const getPost = (id: string) => {
+  return async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
+    try {
+      const res = await axios.get(`/api/posts/${id}`);
 
-    dispatch({
-      type: ActionTypes.GET_POST,
-      post: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: ActionTypes.POST_ERROR,
-      msg: err.response.statusText,
-      status: err.response.status
-    });
-  }
+      dispatch({
+        type: ActionTypes.GET_POST,
+        post: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: ActionTypes.POST_ERROR,
+        msg: err.response.statusText,
+        status: err.response.status
+      });
+    }
+  };
 };
 
 export const addComment = (

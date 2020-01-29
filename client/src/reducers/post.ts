@@ -40,8 +40,6 @@ const initialState = {
 };
 
 export default function(state = initialState, action: PostActionTypes) {
-  // const { type, payload } = action;
-
   switch (action.type) {
     case ActionTypes.GET_POSTS: {
       const typedAction = action as GetPostsAction;
