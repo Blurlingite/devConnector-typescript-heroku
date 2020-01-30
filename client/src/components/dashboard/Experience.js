@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Moment from "react-moment";
 import { deleteExperience } from "../../actions/profile";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const Experience = ({ experience, deleteExperience }) => {
   const experiences = experience.map(exp => (
     <tr key={exp._id}>

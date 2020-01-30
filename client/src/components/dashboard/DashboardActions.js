@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const DashboardActions = () => {
   return (
     <div className="dash-buttons">

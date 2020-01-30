@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addComment } from "../../actions/post";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const CommentForm = ({ postId, addComment }) => {
   const [text, setText] = useState("");
 

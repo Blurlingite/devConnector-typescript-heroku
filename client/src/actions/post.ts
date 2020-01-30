@@ -69,7 +69,7 @@ export const deletePost = (
 ): ThunkAction<Promise<void>, {}, {}, AppActions> => async dispatch => {
   try {
     await axios.delete(`/api/posts/${id}`);
-
+    console.log("AAA");
     dispatch({
       type: ActionTypes.DELETE_POST,
       id: id

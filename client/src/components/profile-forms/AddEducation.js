@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addEducation } from "../../actions/profile";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const AddEducation = ({ addEducation, history }) => {
   const [formData, setFormData] = useState({
     school: "",

@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
+
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const ProfileEducation = ({
   education: { school, degree, fieldofstudy, current, to, from, description }
 }) => (

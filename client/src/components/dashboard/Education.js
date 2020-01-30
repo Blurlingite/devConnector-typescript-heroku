@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { deleteEducation } from "../../actions/profile";
 import Moment from "react-moment";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const Education = ({ education, deleteEducation }) => {
   const educations = education.map(edu => (
     <tr key={edu._id}>

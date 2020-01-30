@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import PostItem from "./PostItem";
 import PostForm from "./PostForm";
-
 import { getPosts } from "../../actions/post";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Moment from "react-moment";
 import { deleteComment } from "../../actions/post";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const CommentItem = ({
   postId,
   comment: { _id, text, name, avatar, user, date },

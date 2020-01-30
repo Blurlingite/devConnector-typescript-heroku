@@ -8,6 +8,7 @@ import Experience from "./Experience";
 import Education from "./Education";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const Dashboard = ({
   getCurrentProfile,
   deleteAccount,

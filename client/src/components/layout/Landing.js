@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
     return <Redirect to="/dashboard" />;

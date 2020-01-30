@@ -5,6 +5,7 @@ import ProfileItem from "./ProfileItem";
 import { getProfiles } from "../../actions/profile";
 import { connect } from "react-redux";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
     getProfiles();

@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const ProfileAbout = ({
   profile: {
     bio,

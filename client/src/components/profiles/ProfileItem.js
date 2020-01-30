@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const ProfileItem = ({
   profile: {
     user: { _id, name, avatar },

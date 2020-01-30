@@ -1,16 +1,23 @@
 import React, { Fragment, useCallback } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { addLike, removeLike, deletePost } from "../../actions/post";
-import { bindActionCreators } from "redux";
-import { AppState } from "../../store";
-import { ThunkDispatch } from "redux-thunk";
-import { AppActions } from "../../actions/types";
+// import { bindActionCreators } from "redux";
+// import { AppState } from "../../store";
+// import { ThunkDispatch } from "redux-thunk";
+// import PropTypes from "prop-types";
+import {
+  ActionTypes,
+  AppActions,
+  PostActionTypes,
+  AlertActionTypes
+} from "../../actions/types";
 import { User } from "../../types/User";
 import { Auth } from "../../types/Auth";
+import PostForm from "./PostForm";
 
+// We will replace connect() with hooks, take out everything we get from the state (the state itself(everything you would put in "mapStateToProps") and the actions we use(in this case: addLike, removeLike, and deletePost)) we will instead define them in the component using useSelector(), useDispatch(), and useCallback()
 interface PostItemProps {
   // addLike: React.Dispatch<React.SetStateAction<any>>;
   // removeLike: React.Dispatch<React.SetStateAction<any>>;
@@ -43,7 +50,13 @@ export const PostItem: React.FC<PostItemProps> = ({
   showActions
 }) => {
   const auth: Auth = useSelector<LinkStateProps, Auth>(state => state.auth);
+
   const dispatch: any = useDispatch();
+
+  const onClickDeletePost = useCallback(
+    (postID: string) => dispatch(deletePost(postID)),
+    [dispatch]
+  );
 
   return (
     <div className="post bg-white p-1 my-1">
@@ -88,7 +101,7 @@ export const PostItem: React.FC<PostItemProps> = ({
 
             {!auth.loading && user === auth.user._id && (
               <button
-                onClick={() => dispatch(deletePost(_id))}
+                onClick={() => onClickDeletePost(_id)}
                 // onClick={e => deletePost(_id)}
                 type="button"
                 className="btn btn-danger"

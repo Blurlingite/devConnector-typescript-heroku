@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import spinner from "./spinner.gif";
 
+// NOTE: I changed the code in this component to use Typescript.
 export default () => (
   <Fragment>
     <img

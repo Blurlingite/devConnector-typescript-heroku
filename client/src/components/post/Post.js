@@ -8,6 +8,7 @@ import CommentForm from "../post/CommentForm";
 import CommentItem from "../post/CommentItem";
 import { getPost } from "../../actions/post";
 
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
     getPost(match.params.id);

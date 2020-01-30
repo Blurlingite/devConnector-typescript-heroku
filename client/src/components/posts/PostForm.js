@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addPost } from "../../actions/post";
+
+// NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const PostForm = ({ addPost }) => {
   const [text, setText] = useState("");
 
