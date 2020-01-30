@@ -1,7 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import { ActionTypes, AppActions } from "./types";
-import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { Dispatch } from "redux";
 import { AppState } from "../store";
@@ -67,7 +66,7 @@ export const removeLike = (id: string) => {
 
 export const deletePost = (
   id: string
-): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
+): ThunkAction<Promise<void>, {}, {}, AppActions> => async dispatch => {
   try {
     await axios.delete(`/api/posts/${id}`);
 
@@ -88,7 +87,7 @@ export const deletePost = (
 
 export const addPost = (
   formData: string
-): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
+): ThunkAction<Promise<void>, {}, {}, AppActions> => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -134,7 +133,7 @@ export const getPost = (id: string) => {
 export const addComment = (
   postId: string,
   formData: string
-): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
+): ThunkAction<Promise<void>, {}, {}, AppActions> => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -165,7 +164,7 @@ export const addComment = (
 export const deleteComment = (
   postId: string,
   commentId: string
-): ThunkAction<Promise<void>, {}, {}, AnyAction> => async dispatch => {
+): ThunkAction<Promise<void>, {}, {}, AppActions> => async dispatch => {
   try {
     const res = await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
 
