@@ -37,7 +37,11 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
     "concurrently": "^4.1.0",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
     "nodemon": "^1.18.11"
   }
 }

@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 import { login } from "../../actions/auth";
 
 // NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
