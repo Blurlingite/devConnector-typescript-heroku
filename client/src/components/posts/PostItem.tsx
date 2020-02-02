@@ -1,21 +1,10 @@
 import React, { Fragment, useCallback } from "react";
-import { Link } from "react-router-dom";
 import Moment from "react-moment";
-import { connect, useSelector, useDispatch } from "react-redux";
-import { addLike, removeLike, deletePost } from "../../actions/post";
-// import { bindActionCreators } from "redux";
-// import { AppState } from "../../store";
-// import { ThunkDispatch } from "redux-thunk";
-// import PropTypes from "prop-types";
-import {
-  ActionTypes,
-  AppActions,
-  PostActionTypes,
-  AlertActionTypes
-} from "../../actions/types";
-import { User } from "../../types/User";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { addLike, deletePost, removeLike } from "../../actions/post";
 import { Auth } from "../../types/Auth";
-import PostForm from "./PostForm";
+import { User } from "../../types/User";
 
 // We will replace connect() with hooks, take out everything we get from the state (the state itself(everything you would put in "mapStateToProps") and the actions we use(in this case: addLike, removeLike, and deletePost)) we will instead define them in the component using useSelector(), useDispatch(), and useCallback()
 interface PostItemProps {
