@@ -1,7 +1,7 @@
-import React from "react";
-import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
+import React from "react";
 import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 
 // NOTE: I changed the code in this component to use Typescript. See the "PostItem" component for comments on that
 const Landing = ({ isAuthenticated }) => {
@@ -15,7 +15,7 @@ const Landing = ({ isAuthenticated }) => {
         <div className="landing-inner">
           <h1 className="x-large">Developer Connector</h1>
           <p className="lead">
-            Create a developer profile/portfolio, share posts and get help from
+            TYPE a developer profile/portfolio, share posts and get help from
             other developers
           </p>
           <div className="buttons">
